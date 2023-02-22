@@ -1,26 +1,39 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <ul>
+  <learning-resource :key="res.id" 
+  v-for="res in storedResources"
+  :title="res.title"
+  :description="res.description"
+  :link="res.link"></learning-resource>
+</ul>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+  import LearningResource from "./components/learning-resources/LearningResource.vue"
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    LearningResource
+  },
+  data() {
+    return {
+      storedResources: [
+        {
+          id: 'google',
+          title: 'Google',
+          description: 'Learn how to google',
+          link: 'https://google.com'
+        },
+        {
+          id: 'official-guide',
+          title: 'Official Guide',
+          description: 'The official Vue.js documentation',
+          link: 'https://vuejs.org'
+        }
+      ]
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
