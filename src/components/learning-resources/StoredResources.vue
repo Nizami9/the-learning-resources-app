@@ -14,11 +14,6 @@ export default {
     props: ['resources'],
     components: {
         LearningResource
-    },
-    data() {
-        return{
-
-        }
     }
 }
 </script>
