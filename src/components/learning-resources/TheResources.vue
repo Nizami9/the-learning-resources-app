@@ -1,6 +1,7 @@
 <template>
     <base-card>
-        <base-button @click="setSelectedTab('stored-resources')" :mode='storedResButtonColor'>Stored Resources</base-button>
+        <base-button 
+        @click="setSelectedTab('stored-resources')" :mode='storedResButtonColor'>Stored Resources</base-button>
         <base-button @click="setSelectedTab('add-resources')" :mode='addResButtonColor'>Add Resource</base-button>
     </base-card>
     <keep-alive>
@@ -13,8 +14,11 @@
   import AddResources from "./AddResources.vue"
 
 export default{
-    components: {StoredResources, AddResources},
-    data() {
+    components: {
+        StoredResources, 
+        AddResources},
+        
+        data() {
         return {
             selectedTab: 'stored-resources',
             storedResources: [
@@ -30,14 +34,14 @@ export default{
           description: 'The official Vue.js documentation',
           link: 'https://vuejs.org'
         }
-      ]
-        }
+      ],
+        };
     },
     provide() {
         return {
             resources: this.storedResources,
             addResource: this.addResource,
-            removeResource: this.removeResource
+            deleteResource: this.removeResource
         }
     },
     methods: {
@@ -52,10 +56,10 @@ export default{
             link: url
         };
         this.storedResources.unshift(newResource);
-        this.storedResources = 'stored-resources'
+        this.selectedTab = 'stored-resources'
     },
     removeResource(resId) {
-        const resIndex = this.storedResources.findIndex((res) => res.id === resId)
+        const resIndex = this.storedResources.findIndex(res => res.id === resId)
         this.storedResources.splice(resIndex, 1)
     }
     },
